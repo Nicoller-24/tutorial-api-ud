@@ -58,7 +58,7 @@ erDiagram
         long id PK
         datetime created_on
         varchar created_by
-        long tutorial_id FK UK
+        long tutorial_id UK
     }
 ```
 
