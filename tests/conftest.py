@@ -47,7 +47,6 @@ def sample_tutorial_payload():
         "description": "Tutorial básico de APIs REST",
         "published": True,
         "detail": {
-            "created_on": "2026-06-18T10:00:00",
             "created_by": "profesor.garcia@udistrital.edu.co",
         },
     }
