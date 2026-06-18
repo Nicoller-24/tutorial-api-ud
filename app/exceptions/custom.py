@@ -15,6 +15,6 @@ class ConflictError(AppException):
         super().__init__(message, status_code=409)
 
 
-class ValidationError(AppException):
+class BusinessValidationError(AppException):
     def __init__(self, message: str = "Error de validación"):
         super().__init__(message, status_code=422)

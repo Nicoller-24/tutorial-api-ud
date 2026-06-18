@@ -1,5 +1,7 @@
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session, joinedload
 
+from app.exceptions.custom import ConflictError
 from app.models.tutorial import Tutorial
 from app.models.tutorial_detail import TutorialDetail
 
@@ -7,6 +9,16 @@ from app.models.tutorial_detail import TutorialDetail
 class TutorialRepository:
     def __init__(self, db: Session):
         self.db = db
+
+    def _commit(self) -> None:
+        try:
+            self.db.commit()
+        except IntegrityError as exc:
+            self.db.rollback()
+            raise ConflictError("Conflicto con el estado actual del recurso") from exc
+        except Exception:
+            self.db.rollback()
+            raise
 
     def list_tutorials(self, published: bool | None = None) -> list[Tutorial]:
         query = self.db.query(Tutorial)
@@ -30,46 +42,26 @@ class TutorialRepository:
         )
 
     def create(self, tutorial: Tutorial) -> Tutorial:
-        try:
-            self.db.add(tutorial)
-            self.db.commit()
-            self.db.refresh(tutorial)
-            return tutorial
-        except Exception:
-            self.db.rollback()
-            raise
+        self.db.add(tutorial)
+        self._commit()
+        self.db.refresh(tutorial)
+        return tutorial
 
     def create_detail(self, detail: TutorialDetail) -> TutorialDetail:
-        try:
-            self.db.add(detail)
-            self.db.commit()
-            self.db.refresh(detail)
-            return detail
-        except Exception:
-            self.db.rollback()
-            raise
+        self.db.add(detail)
+        self._commit()
+        self.db.refresh(detail)
+        return detail
 
-    def save(self, entity) -> object:
-        try:
-            self.db.commit()
-            self.db.refresh(entity)
-            return entity
-        except Exception:
-            self.db.rollback()
-            raise
+    def save(self, entity: Tutorial | TutorialDetail) -> Tutorial | TutorialDetail:
+        self._commit()
+        self.db.refresh(entity)
+        return entity
 
     def delete(self, tutorial: Tutorial) -> None:
-        try:
-            self.db.delete(tutorial)
-            self.db.commit()
-        except Exception:
-            self.db.rollback()
-            raise
+        self.db.delete(tutorial)
+        self._commit()
 
     def delete_detail(self, detail: TutorialDetail) -> None:
-        try:
-            self.db.delete(detail)
-            self.db.commit()
-        except Exception:
-            self.db.rollback()
-            raise
+        self.db.delete(detail)
+        self._commit()
