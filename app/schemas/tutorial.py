@@ -1,15 +1,24 @@
 from pydantic import BaseModel, ConfigDict, Field
 
 from app.schemas.tutorial_detail import (
+    MAX_VARCHAR,
     TutorialDetailCreate,
     TutorialDetailResponse,
     TutorialDetailUpdate,
 )
 
+__all__ = [
+    "MAX_VARCHAR",
+    "TutorialCreate",
+    "TutorialListResponse",
+    "TutorialResponse",
+    "TutorialUpdate",
+]
+
 
 class TutorialBase(BaseModel):
-    title: str = Field(min_length=1)
-    description: str = Field(min_length=1)
+    title: str = Field(min_length=1, max_length=MAX_VARCHAR)
+    description: str = Field(min_length=1, max_length=MAX_VARCHAR)
     published: bool = False
 
 
@@ -18,8 +27,8 @@ class TutorialCreate(TutorialBase):
 
 
 class TutorialUpdate(BaseModel):
-    title: str | None = Field(default=None, min_length=1)
-    description: str | None = Field(default=None, min_length=1)
+    title: str | None = Field(default=None, min_length=1, max_length=MAX_VARCHAR)
+    description: str | None = Field(default=None, min_length=1, max_length=MAX_VARCHAR)
     published: bool | None = None
 
 

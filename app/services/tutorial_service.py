@@ -1,11 +1,17 @@
+from datetime import datetime, timezone
+
 from sqlalchemy.orm import Session
 
-from app.exceptions.custom import ConflictError, NotFoundError, ValidationError
+from app.exceptions.custom import BusinessValidationError, ConflictError, NotFoundError
 from app.models.tutorial import Tutorial
 from app.models.tutorial_detail import TutorialDetail
 from app.repositories.tutorial_repository import TutorialRepository
 from app.schemas.tutorial import TutorialCreate, TutorialUpdate
 from app.schemas.tutorial_detail import TutorialDetailCreate, TutorialDetailUpdate
+
+
+def _utc_now() -> datetime:
+    return datetime.now(timezone.utc).replace(tzinfo=None)
 
 
 class TutorialService:
@@ -27,7 +33,7 @@ class TutorialService:
             description=data.description,
             published=data.published,
             detail=TutorialDetail(
-                created_on=data.detail.created_on,
+                created_on=_utc_now(),
                 created_by=data.detail.created_by,
             ),
         )
@@ -38,7 +44,7 @@ class TutorialService:
 
         update_data = data.model_dump(exclude_unset=True)
         if not update_data:
-            raise ValidationError("Debe enviar al menos un campo para actualizar")
+            raise BusinessValidationError("Debe enviar al menos un campo para actualizar")
 
         for field, value in update_data.items():
             setattr(tutorial, field, value)
@@ -63,7 +69,7 @@ class TutorialService:
 
         detail = TutorialDetail(
             tutorial_id=tutorial_id,
-            created_on=data.created_on,
+            created_on=_utc_now(),
             created_by=data.created_by,
         )
         return self.repository.create_detail(detail)
@@ -73,7 +79,7 @@ class TutorialService:
 
         update_data = data.model_dump(exclude_unset=True)
         if not update_data:
-            raise ValidationError("Debe enviar al menos un campo para actualizar")
+            raise BusinessValidationError("Debe enviar al menos un campo para actualizar")
 
         for field, value in update_data.items():
             setattr(detail, field, value)
