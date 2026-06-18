@@ -69,7 +69,7 @@ erDiagram
 | `tutorials` | `description` | Descripción del tutorial |
 | `tutorials` | `published` | `true` = visible, `false` = oculto |
 | `tutorial_details` | `id` | Identificador del detalle |
-| `tutorial_details` | `created_on` | Fecha de creación |
+| `tutorial_details` | `created_on` | Fecha de creación (generada por el servidor) |
 | `tutorial_details` | `created_by` | Usuario que creó el tutorial |
 | `tutorial_details` | `tutorial_id` | FK única hacia `tutorials.id` (1:1) |
 
@@ -194,7 +194,6 @@ curl -X POST http://localhost:8000/api/v1/tutorials \
     "description": "Tutorial básico de APIs REST",
     "published": true,
     "detail": {
-      "created_on": "2026-06-18T10:00:00",
       "created_by": "profesor.garcia@udistrital.edu.co"
     }
   }'
@@ -230,7 +229,7 @@ Capturas recomendadas en [`docs/evidence/`](docs/evidence/):
 | Persistencia | SQLAlchemy + Alembic con modelo coherente al diagrama ER |
 | Swagger (opcional) | `/docs` y `/redoc` |
 | Docker (opcional) | `Dockerfile` + `docker-compose.yml` |
-| Tests (opcional) | 14 pruebas con pytest |
+| Tests (opcional) | 23 pruebas con pytest |
 
 ---
 
