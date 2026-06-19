@@ -14,8 +14,15 @@ export function useTutorials() {
     setLoading(true);
     try {
       const response = await tutorialService.list();
-      setTutorials(response.data);
+      const data = response.data;
+      if (!Array.isArray(data)) {
+        setTutorials([]);
+        showToast("La API devolvió un formato inesperado al listar tutoriales", "error");
+        return;
+      }
+      setTutorials(data);
     } catch (error) {
+      setTutorials([]);
       showToast(getErrorMessage(error), "error");
     } finally {
       setLoading(false);
