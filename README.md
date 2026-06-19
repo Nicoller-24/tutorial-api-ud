@@ -33,6 +33,7 @@ Operaciones soportadas:
 | Base de datos (Docker) | PostgreSQL 16 |
 | Servidor | Uvicorn |
 | Tests | pytest + httpx |
+| Frontend | React + Vite + Tailwind |
 | Documentación API | Swagger UI (`/docs`) y ReDoc (`/redoc`) |
 | Migraciones | Alembic |
 | Contenedores | Docker + Docker Compose |
@@ -92,6 +93,12 @@ tutorial-api/
 ├── alembic/                    # Migraciones de base de datos
 │   └── versions/
 ├── tests/                      # Pruebas automatizadas
+├── frontend/                   # Panel React (cliente web)
+│   └── src/
+│       ├── components/         # UI reutilizable y layout
+│       ├── pages/              # Dashboard, crear, detalle
+│       ├── services/           # Cliente Axios
+│       └── hooks/              # useTutorials, useToast
 ├── docs/                       # Diagrama ER y evidencias
 │   └── evidence/
 ├── alembic.ini
@@ -157,6 +164,49 @@ La API aplicará `alembic upgrade head` al arrancar y estará en **http://localh
 
 ```bash
 pytest -v
+```
+
+### Frontend (panel administrativo)
+
+Requisitos: Node.js 18+ y npm.
+
+**Terminal 1 — API** (desde la raíz del proyecto):
+
+```bash
+uvicorn app.main:app --reload
+```
+
+**Terminal 2 — Frontend**:
+
+```bash
+cd frontend
+copy .env.example .env
+npm install
+npm run dev
+```
+
+Panel disponible en: **http://localhost:5173**
+
+| Funcionalidad | Descripción |
+|---------------|-------------|
+| Dashboard | Tarjetas de tutoriales, buscador, badges Publicado/Oculto |
+| Crear | Formulario con `created_by`; `created_on` la genera la API |
+| Editar | Modal con datos del tutorial y del detalle |
+| Detalle | Vista completa tutorial + TutorialDetail (1:1) |
+| Eliminar | Diálogo de confirmación |
+
+Variables de entorno del frontend (`frontend/.env`):
+
+| Variable | Default | Descripción |
+|----------|---------|-------------|
+| `VITE_API_URL` | `/api/v1` | Base URL de la API (proxy Vite en dev) |
+
+Build de producción:
+
+```bash
+cd frontend
+npm run build
+npm run preview
 ```
 
 ---
@@ -228,6 +278,7 @@ Capturas recomendadas en [`docs/evidence/`](docs/evidence/):
 | API REST CRUD | Endpoints completos con manejo de excepciones |
 | Persistencia | SQLAlchemy + Alembic con modelo coherente al diagrama ER |
 | Swagger (opcional) | `/docs` y `/redoc` |
+| Frontend (opcional) | Panel React en `frontend/` (Vite + Tailwind) |
 | Docker (opcional) | `Dockerfile` + `docker-compose.yml` |
 | Tests (opcional) | 23 pruebas con pytest |
 
