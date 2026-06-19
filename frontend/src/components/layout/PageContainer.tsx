@@ -13,8 +13,8 @@ export function PageContainer({ children, title, description, action }: PageCont
       {(title || action) && (
         <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            {title && <h1 className="font-serif text-2xl font-bold tracking-tight text-ud-dark">{title}</h1>}
-            {description && <p className="mt-1 text-sm text-ud-gray">{description}</p>}
+            {title && <h1 className="font-serif text-2xl font-bold tracking-tight text-brand-dark">{title}</h1>}
+            {description && <p className="mt-1 text-sm text-brand-gray">{description}</p>}
           </div>
           {action}
         </div>

@@ -1,9 +1,9 @@
 import { useToast } from "../../hooks/useToast";
 
 const styles = {
-  success: "bg-ud-burgundy text-white",
-  error: "bg-ud-burgundy-dark text-white",
-  info: "bg-ud-yellow text-ud-charcoal font-semibold",
+  success: "bg-brand-burgundy text-white",
+  error: "bg-brand-burgundy-dark text-white",
+  info: "bg-brand-yellow text-brand-charcoal font-semibold",
 };
 
 export function ToastContainer() {

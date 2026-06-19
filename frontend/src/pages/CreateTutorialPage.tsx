@@ -35,7 +35,7 @@ export function CreateTutorialPage() {
       title="Crear tutorial"
       description="Registra un tutorial con su detalle. La fecha de creación la genera el servidor."
     >
-      <div className="mx-auto max-w-2xl ud-card-accent p-6">
+      <div className="mx-auto max-w-2xl app-card-accent p-6">
         <TutorialForm
           submitLabel="Crear tutorial"
           loading={loading}

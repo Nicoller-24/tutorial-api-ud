@@ -92,34 +92,34 @@ export function TutorialDetailPage() {
       }
     >
       <div className="grid gap-6 lg:grid-cols-2">
-        <section className="ud-card-accent p-6">
+        <section className="app-card-accent p-6">
           <div className="mb-4 flex items-center justify-between">
-            <h2 className="font-serif text-lg font-semibold text-ud-dark">Tutorial</h2>
+            <h2 className="font-serif text-lg font-semibold text-brand-dark">Tutorial</h2>
             <Badge published={tutorial.published} />
           </div>
           <dl className="space-y-4 text-sm">
             <div>
-              <dt className="font-medium text-ud-gray">ID</dt>
-              <dd className="mt-1 text-ud-dark">{tutorial.id}</dd>
+              <dt className="font-medium text-brand-gray">ID</dt>
+              <dd className="mt-1 text-brand-dark">{tutorial.id}</dd>
             </div>
             <div>
-              <dt className="font-medium text-ud-gray">Descripción</dt>
-              <dd className="mt-1 text-ud-dark">{tutorial.description}</dd>
+              <dt className="font-medium text-brand-gray">Descripción</dt>
+              <dd className="mt-1 text-brand-dark">{tutorial.description}</dd>
             </div>
           </dl>
         </section>
 
-        <section className="ud-card-accent p-6">
-          <h2 className="mb-4 font-serif text-lg font-semibold text-ud-dark">Detalle (1:1)</h2>
+        <section className="app-card-accent p-6">
+          <h2 className="mb-4 font-serif text-lg font-semibold text-brand-dark">Detalle (1:1)</h2>
           {tutorial.detail ? (
             <dl className="space-y-4 text-sm">
               <div>
-                <dt className="font-medium text-ud-gray">Usuario creador</dt>
-                <dd className="mt-1 text-ud-dark">{tutorial.detail.created_by}</dd>
+                <dt className="font-medium text-brand-gray">Usuario creador</dt>
+                <dd className="mt-1 text-brand-dark">{tutorial.detail.created_by}</dd>
               </div>
               <div>
-                <dt className="font-medium text-ud-gray">Fecha de creación</dt>
-                <dd className="mt-1 text-ud-dark">
+                <dt className="font-medium text-brand-gray">Fecha de creación</dt>
+                <dd className="mt-1 text-brand-dark">
                   {formatDateTime(tutorial.detail.created_on, {
                     dateStyle: "full",
                     timeStyle: "short",
@@ -127,12 +127,12 @@ export function TutorialDetailPage() {
                 </dd>
               </div>
               <div>
-                <dt className="font-medium text-ud-gray">ID detalle</dt>
-                <dd className="mt-1 text-ud-dark">{tutorial.detail.id}</dd>
+                <dt className="font-medium text-brand-gray">ID detalle</dt>
+                <dd className="mt-1 text-brand-dark">{tutorial.detail.id}</dd>
               </div>
             </dl>
           ) : (
-            <p className="text-sm text-ud-gray">Este tutorial no tiene detalle asociado.</p>
+            <p className="text-sm text-brand-gray">Este tutorial no tiene detalle asociado.</p>
           )}
         </section>
       </div>

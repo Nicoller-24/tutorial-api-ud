@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply min-h-screen bg-ud-gray-bg font-sans text-ud-dark antialiased;
+    @apply min-h-screen bg-brand-gray-bg font-sans text-brand-dark antialiased;
   }
 
   h1,
@@ -15,24 +15,24 @@
 }
 
 @layer components {
-  .ud-card {
-    @apply overflow-hidden rounded-sm bg-white shadow-ud ring-1 ring-black/5 transition hover:shadow-lg;
+  .app-card {
+    @apply overflow-hidden rounded-sm bg-white shadow-brand ring-1 ring-black/5 transition hover:shadow-lg;
   }
 
-  .ud-card-accent {
-    @apply ud-card relative;
+  .app-card-accent {
+    @apply app-card relative;
   }
 
-  .ud-card-accent::before {
+  .app-card-accent::before {
     content: "";
-    @apply absolute inset-y-0 left-0 w-1 bg-ud-burgundy;
+    @apply absolute inset-y-0 left-0 w-1 bg-brand-burgundy;
   }
 
-  .ud-input-focus {
-    @apply focus:border-ud-burgundy focus:outline-none focus:ring-2 focus:ring-ud-burgundy/20;
+  .app-input-focus {
+    @apply focus:border-brand-burgundy focus:outline-none focus:ring-2 focus:ring-brand-burgundy/20;
   }
 
-  .ud-nav-slash {
-    @apply mx-2 text-ud-yellow opacity-90;
+  .app-nav-slash {
+    @apply mx-2 text-brand-yellow opacity-90;
   }
 }

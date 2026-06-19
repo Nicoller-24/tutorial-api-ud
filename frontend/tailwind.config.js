@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        ud: {
+        brand: {
           burgundy: "#911414",
           "burgundy-dark": "#6E0F0F",
           charcoal: "#1A1A1A",
@@ -24,7 +24,7 @@ export default {
         serif: ["Lora", "Georgia", "serif"],
       },
       boxShadow: {
-        ud: "0 4px 14px rgba(145, 20, 20, 0.1)",
+        brand: "0 4px 14px rgba(145, 20, 20, 0.1)",
       },
     },
   },
