@@ -100,14 +100,14 @@ export function EditTutorialModal({ tutorialId, open, onClose, onSaved }: EditTu
             onChange={(e) => setDescription(e.target.value)}
             maxLength={255}
           />
-          <label className="flex items-center gap-3 rounded-lg border border-ud-yellow/30 bg-ud-yellow-light/40 px-4 py-3">
+          <label className="flex items-center gap-3 rounded-lg border border-brand-yellow/30 bg-brand-yellow-light/40 px-4 py-3">
             <input
               type="checkbox"
               checked={published}
               onChange={(e) => setPublished(e.target.checked)}
-              className="h-4 w-4 rounded border-ud-gray-light text-ud-burgundy focus:ring-ud-burgundy"
+              className="h-4 w-4 rounded border-brand-gray-light text-brand-burgundy focus:ring-brand-burgundy"
             />
-            <span className="text-sm font-medium text-ud-dark">Publicado (visible)</span>
+            <span className="text-sm font-medium text-brand-dark">Publicado (visible)</span>
           </label>
 
           {tutorial?.detail && (
