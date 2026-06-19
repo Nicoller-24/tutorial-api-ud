@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply min-h-screen bg-ud-gray-bg font-sans text-ud-dark antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-sans font-bold;
+  }
+}
+
+@layer components {
+  .ud-card {
+    @apply overflow-hidden rounded-sm bg-white shadow-ud ring-1 ring-black/5 transition hover:shadow-lg;
+  }
+
+  .ud-card-accent {
+    @apply ud-card relative;
+  }
+
+  .ud-card-accent::before {
+    content: "";
+    @apply absolute inset-y-0 left-0 w-1 bg-ud-burgundy;
+  }
+
+  .ud-input-focus {
+    @apply focus:border-ud-burgundy focus:outline-none focus:ring-2 focus:ring-ud-burgundy/20;
+  }
+
+  .ud-nav-slash {
+    @apply mx-2 text-ud-yellow opacity-90;
+  }
+}

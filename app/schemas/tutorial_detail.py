@@ -1,6 +1,6 @@
-from datetime import datetime
+from datetime import datetime, timezone
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_serializer
 
 MAX_VARCHAR = 255
 
@@ -20,3 +20,9 @@ class TutorialDetailResponse(BaseModel):
     tutorial_id: int
     created_on: datetime
     created_by: str
+
+    @field_serializer("created_on")
+    def serialize_created_on(self, value: datetime) -> datetime:
+        if value.tzinfo is None:
+            return value.replace(tzinfo=timezone.utc)
+        return value
