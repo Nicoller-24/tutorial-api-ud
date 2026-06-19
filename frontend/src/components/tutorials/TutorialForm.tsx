@@ -65,21 +65,21 @@ export function TutorialForm({
         maxLength={255}
       />
 
-      <label className="flex items-center gap-3 rounded-lg border border-ud-yellow/30 bg-ud-yellow-light/40 px-4 py-3">
+      <label className="flex items-center gap-3 rounded-lg border border-brand-yellow/30 bg-brand-yellow-light/40 px-4 py-3">
         <input
           type="checkbox"
           checked={values.published}
           onChange={(event) => setValues((prev) => ({ ...prev, published: event.target.checked }))}
-          className="h-4 w-4 rounded border-ud-gray-light text-ud-burgundy focus:ring-ud-burgundy"
+          className="h-4 w-4 rounded border-brand-gray-light text-brand-burgundy focus:ring-brand-burgundy"
         />
-        <span className="text-sm font-medium text-ud-dark">Publicado (visible)</span>
+        <span className="text-sm font-medium text-brand-dark">Publicado (visible)</span>
       </label>
 
       <Input
         label="Usuario creador"
         value={values.created_by}
         onChange={(event) => setValues((prev) => ({ ...prev, created_by: event.target.value }))}
-        placeholder="profesor.garcia@udistrital.edu.co"
+        placeholder="autor@ejemplo.com"
         required
         maxLength={255}
       />
